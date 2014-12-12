@@ -46,13 +46,14 @@ var bio = {
 		"github": "hytlee72",
 		"location": "Baton Rouge, La."
 	},
+	"biopic" : "images/me.jpg",
 
 	"skills": [
 		"awesomeness",
 		"ninjakata master",
 		"pinball wizard",
 		"all-around badass"
-	]
+		]
 }
 
 var education = {
@@ -75,3 +76,74 @@ var education = {
 		}
 	]
 }
+
+
+var formattedRole = HTMLheaderRole.replace("%data%",
+	bio.role);
+var formattedName = HTMLheaderName.replace("%data%",
+	bio.name);
+var formattedBioPic = HTMLbioPic.replace("%data%",
+	bio.biopic);
+var formattedWelcome = HTMLWelcomeMsg.replace("%data%",
+	bio.welcomeMessage);
+var formattedMobile = HTMLmobile.replace("%data%",
+	bio.contacts.mobile);
+var formattedEmail = HTMLemail.replace("%data%",
+	bio.contacts.email);
+var formattedGithub = HTMLgithub.replace("%data%",
+	bio.contacts.github);
+var formattedLocation = HTMLlocation.replace("%data%",
+	bio.contacts.location);
+	
+$("#header").prepend(
+	formattedName,
+	formattedRole);
+
+$("#header").append(
+	formattedBioPic,
+	formattedWelcome);
+$("#topContacts").append(
+	formattedMobile,
+	formattedEmail,
+	formattedGithub,
+	formattedLocation);
+
+if(bio.skills.length > 0) { 
+
+		$("#header").append(HTMLskillsStart);
+
+		var skillcount=0;
+
+		for(skill in bio.skills) {
+		var formattedSkill = HTMLskills.replace("%data%",
+			bio.skills[skillcount]);
+		$("#skills").append(formattedSkill);
+		skillcount = skillcount + 1;
+	}
+}
+
+
+function displayWork() {
+for(job in work.jobs) {
+	$("#workExperience").append(HTMLworkStart);
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", 
+		work.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%",
+		work.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer + 
+		formattedTitle;
+	var formattedLocation = HTMLworkLocation.replace("%data%",
+		work.jobs[job].location);
+	var formattedDates = HTMLworkDates.replace("%data%",
+		work.jobs[job].dates);
+	var formattedDescription = HTMLworkDescription.replace("%data%",
+		work.jobs[job].description);	
+	$(".work-entry:last").append(
+		formattedEmployerTitle,
+		formattedLocation,
+	   formattedDates,
+	   formattedDescription);
+	}
+}
+
+displayWork();
