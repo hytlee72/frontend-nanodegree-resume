@@ -21,17 +21,17 @@ var work = {
 var projects = {
 	"projects": [
 		{
-			"title": "",
-			"dates": "",
-			"description": "",
-			"images": ""
+			"title": "Framework Test Page",
+			"dates": "December 2014",
+			"description": "Frame Page",
+			"images": "images/FramePage.png"
 		},
 
 		{
-			"title": "",
-			"dates": "",
-			"description": "",
-			"images": ""
+			"title": "Project1",
+			"dates": "December 2014",
+			"description": "1st Project Submission",
+			"images": "images/Project1.png"
 		}	
 	]
 }
@@ -147,3 +147,37 @@ for(job in work.jobs) {
 }
 
 displayWork();
+
+
+projects.display = function() {
+
+	for(project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle = HTMLprojectTitle.replace("%data%",
+			projects.projects[project].title);
+		var formattedDates = HTMLprojectDates.replace("%data%",
+			projects.projects[project].dates);
+		var formattedDescription = HTMLprojectDescription.replace("%data%",
+			projects.projects[project].description);
+		var formattedImage = HTMLprojectImage.replace("%data%",
+			projects.projects[project].images);
+
+		$(".project-entry:last").append(
+			formattedTitle,
+			formattedDates,
+			formattedDescription,
+			formattedImage
+			);
+	}
+}
+
+projects.display();
+
+$("#main").append(internationalizeButton);
+
+function inName(name) {
+	var name = bio.name.split(" ");
+	name[1] = name[1].toUpperCase();
+	name = name.join(" ");
+	return name;
+}
